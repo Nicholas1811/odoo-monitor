@@ -24,4 +24,4 @@ jobs:
           playwright install
 
       - name: Run monitor
-        run: python monitor.py
+        run: python runner.py
