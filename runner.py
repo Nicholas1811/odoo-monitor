@@ -3,10 +3,13 @@ from playwright.sync_api import Playwright, sync_playwright, expect
 
 
 def run(playwright: Playwright) -> None:
+    
     browser = playwright.chromium.launch(headless=True)
-    context = browser.new_context()
+    context = browser.new_context(viewport={"width":1920, "height": 1080})
     page = context.new_page()
+    page.set_default_timeout(60000);
     page.goto("http://e08g02t03-lab-prod.centralindia.cloudapp.azure.com:8069/")
+    page.wait_for_load_state("networkidle")
     page.get_by_role("menuitem", name="Home").click()
     page.get_by_role("link", name="Get in touch").click()
     page.locator("#wrap").get_by_role("link", name="Home").click()
