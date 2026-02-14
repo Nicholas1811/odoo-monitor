@@ -5,7 +5,9 @@ from playwright.sync_api import Playwright, sync_playwright, expect
 def run(playwright: Playwright) -> None:
     
     browser = playwright.chromium.launch(headless=True)
-    context = browser.new_context(viewport={"width":1920, "height": 1080})
+    context = browser.new_context(viewport={"width":1920, "height": 1080}
+                                  ,
+                                  user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115 Safari/537.36")
     page = context.new_page()
     page.set_default_timeout(60000)
     page.goto("http://e08g02t03-lab-prod.centralindia.cloudapp.azure.com:8069/")
